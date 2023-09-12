@@ -5,6 +5,9 @@ import { useState } from 'react'
 const App = () => {
 
    const [questionNum, setQuestionNum] = useState(0)
+   const [selectedOption, setSelectedOption] = useState('')
+   const [mark, setMark] = useState(0)
+
    const handlePrev = () => {
       if (questionNum == 0) {
          setQuestionNum(0);
@@ -12,15 +15,33 @@ const App = () => {
       else {
          setQuestionNum(questionNum - 1)
       }
-   } 
+   }
 
    const handleNext = () => {
-      if (questionNum == questions.length-1) {
-         setQuestionNum( questions.length-1)
+
+      questions[questionNum].option.map((option, index) => {
+         if (option === selectedOption) {
+            setMark(mark + 1)
+            console.log(mark)
+         }
+      })
+
+      if (questionNum == questions.length - 1) {
+         setQuestionNum(questions.length - 1)
       } else {
          setQuestionNum(questionNum + 1)
       }
    }
+
+if(questionNum === questions.length-1){
+   console.log(questionNum)
+}else{
+   console.log("onum")
+}
+
+
+
+
    return (
       <div>
 
@@ -32,23 +53,27 @@ const App = () => {
             })}
 
 
-
          {questions[questionNum].option.map((option, index) => (
-            <label key={index}>
+            <div key={index}>
                <input
                   type="radio"
+                  id={option}
                   value={option}
+                  checked={option === selectedOption}
+                  onChange={(e) => {
+                     setSelectedOption(e.target.value)
+                  }}
                />
-               {option}
-            </label>
+               <label>{option}</label>
+               <br />
+            </div>
          ))}
 
 
-
-
-
          <button onClick={handlePrev}>prev</button>
-         <button onClick={handleNext}>next</button>
+         {questionNum < questions.length-1 &&  <button onClick={handleNext}>next</button>}    
+         {questionNum == questions.length-1 &&  <button  >finish</button>}
+
 
       </div>
    )
