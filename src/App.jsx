@@ -26,24 +26,16 @@ const App = () => {
          }
       })
 
-      if (questionNum == questions.length - 1) {
+      if (questionNum === questions.length - 1) {
          setQuestionNum(questions.length - 1)
       } else {
          setQuestionNum(questionNum + 1)
       }
    }
 
-if(questionNum === questions.length-1){
-   console.log(questionNum)
-}else{
-   console.log("onum")
-}
-
-
-
-
    return (
       <div>
+      
 
          {
             questions.map((item, idx) => {
@@ -71,8 +63,8 @@ if(questionNum === questions.length-1){
 
 
          <button onClick={handlePrev}>prev</button>
-         {questionNum < questions.length-1 &&  <button onClick={handleNext}>next</button>}    
-         {questionNum == questions.length-1 &&  <button  >finish</button>}
+         {questionNum < questions.length - 1 && <button onClick={handleNext}>next</button>}
+         {questionNum === questions.length - 1 && <button  >finish</button>}
 
 
       </div>
