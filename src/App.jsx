@@ -3,7 +3,7 @@ import questions from './data/question'
 import { useState } from 'react'
 import ResultCard from './components/ResultCard'
 import QuestionCard from './components/QuestionCard'
-import { Typography,Stack } from '@mui/material'
+import { Typography,Stack,Button ,Box} from '@mui/material'
 
 const App = () => {
 
@@ -41,7 +41,7 @@ const App = () => {
    };
 
    return (
-      <Stack>
+      <Stack >
 
          <Typography variant='h2'>Quiz App</Typography>
 
@@ -54,10 +54,10 @@ const App = () => {
                   setSelectedOption={setSelectedOption}
                />
 
-               <div>
-                  {questionNum < questions.length - 1 && <button onClick={handleNext}>next</button>}
-                  {questionNum === questions.length - 1 && <button onClick={handleFinish} >finish</button>}
-               </div>
+               <Box sx={{display:'flex' , justifyContent:"right", mr:2}}>
+                  {questionNum < questions.length - 1 && <Button variant='contained'  color="success" onClick={handleNext}>Next</Button>}
+                  {questionNum === questions.length - 1 && <Button variant='contained'  color="success" onClick={handleFinish} >Finish</Button>}
+               </Box>
 
             </div>
          )}

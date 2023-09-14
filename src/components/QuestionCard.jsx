@@ -1,6 +1,7 @@
 import React from 'react'
 import questions from '../data/question'
-import { Box, Stack, Checkbox } from '@mui/material'
+import { Box, Stack, Checkbox, Typography } from '@mui/material'
+
 
 
 const QuestionCard = ({ questionNum, selectedOption, setSelectedOption }) => {
@@ -8,21 +9,22 @@ const QuestionCard = ({ questionNum, selectedOption, setSelectedOption }) => {
     <Stack
       direction={{ xs: 'column', sm: 'row' }}
       justifyContent='space-around'
-      sx={{ width: "600px", border: '2px solid black',boxShadow:2}}
+      sx={{  boxShadow:3,borderRadius:4, m:2}}
     >
 
-      <Box sx={{ m: 2 }}>
+      <Box sx={{ m: 2 , width:"200px"}}>
+   
         {
           questions.map((item, idx) => {
             if (idx === questionNum) {
-              return <p key={idx}>{questionNum + 1}.{item.question}</p>
+              return <Typography variant='body1' key={idx}>{questionNum + 1}.{item.question}</Typography>
             }
           })}
       </Box>
 
       <Box sx={{ m: 2 }} >
         {questions[questionNum].option.map((option, index) => (
-          <Box key={index} sx={{ border: "1px solid green", mb: 2, width: 200, borderRadius: 2 }}>
+          <Box key={index} sx={{ border: "1px solid green", mb: 2, width: "200px", borderRadius: 2 }}>
             <Checkbox
               color="success"
               id={option}
