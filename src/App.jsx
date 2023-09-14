@@ -1,6 +1,9 @@
 import React from 'react'
 import questions from './data/question'
 import { useState } from 'react'
+import ResultCard from './components/ResultCard'
+import QuestionCard from './components/QuestionCard'
+import { Typography,Stack } from '@mui/material'
 
 const App = () => {
 
@@ -16,7 +19,7 @@ const App = () => {
          setQuestionNum(questionNum + 1)
       }
 
-      if (selectedOption === questions[questionNum].answer) { 
+      if (selectedOption === questions[questionNum].answer) {
          setMark(mark + 1)
       }
       setSelectedOption('')
@@ -25,7 +28,6 @@ const App = () => {
 
    const handleFinish = () => {
       if (selectedOption === questions[questionNum].answer) {
-         console.log(selectedOption, questions[questionNum].answer, mark)
          setMark(mark + 1)
       }
       setShowResult(true)
@@ -39,45 +41,28 @@ const App = () => {
    };
 
    return (
-      <div>
-         {showResult ? (
+      <Stack>
+
+         <Typography variant='h2'>Quiz App</Typography>
+
+         {showResult ? (<ResultCard mark={mark} handleRestart={handleRestart} />) : (
             <div>
-               <h3>Quiz Result</h3>
-               <p>Your score: {mark}</p>
-               <button onClick={handleRestart}>Restart Quiz</button>
-            </div>
-         ) : (
-            <div>
-               {
-                  questions.map((item, idx) => {
-                     if (idx === questionNum) {
-                        return <h3 key={idx}>{item.question}</h3>
-                     }
-                  })}
 
+               <QuestionCard
+                  questionNum={questionNum}
+                  selectedOption={selectedOption}
+                  setSelectedOption={setSelectedOption}
+               />
 
-               {questions[questionNum].option.map((option, index) => (
-                  <div key={index}>
-                     <input
-                        type="radio"
-                        id={option}
-                        value={option}
-                        checked={option === selectedOption}
-                        onChange={(e) => {
-                           setSelectedOption(e.target.value)
-                        }}
-                     />
-                     <label>{option}</label>
-                     <br />
-                  </div>
-               ))}
-
-               {questionNum < questions.length - 1 && <button onClick={handleNext}>next</button>}
-               {questionNum === questions.length - 1 && <button onClick={handleFinish} >finish</button>}
+               <div>
+                  {questionNum < questions.length - 1 && <button onClick={handleNext}>next</button>}
+                  {questionNum === questions.length - 1 && <button onClick={handleFinish} >finish</button>}
+               </div>
 
             </div>
          )}
-      </div>
+
+      </Stack>
    )
 }
 
