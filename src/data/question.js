@@ -1,18 +1,18 @@
 const questions = [
                             {
-                                question:"who is me",
-                                option:["bala", "manoj", "anto"],
-                                answer: "bala"
+                                question:" Which of the following command is used to install create-react-app?",
+                                option:["install -g create-react-app", "npm install -g create-react-app", "npm install create-react-app"],
+                                answer: "npm install -g create-react-app "
                             },
                              {
-                                question:"who is he",
-                                option:["bala1", "manoj", "anto"],
-                                answer: "manoj"
+                                question:"Which of the following is the correct name of React.js?",
+                                option:["React", "React.js", "All of the above"],
+                                answer: "All of the above"
                             },
                              {
-                                question:"who is thar",
-                                option:["bala2", "manoj", "anto"],
-                                answer: "anto"
+                                question:"Which of the following acts as the input of a class-based component?",
+                                option:["Factory", "Props", "Class"],
+                                answer: "Props"
                             },
 ]
 

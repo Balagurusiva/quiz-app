@@ -22,9 +22,9 @@ const QuestionCard = ({ questionNum, selectedOption, setSelectedOption }) => {
           })}
       </Box>
 
-      <Box sx={{ m: 2 }} >
+      <Box sx={{ m: 2 ,width:"auto"}} >
         {questions[questionNum].option.map((option, index) => (
-          <Box key={index} sx={{ border: "1px solid green", mb: 2, width: "200px", borderRadius: 2 }}>
+          <Box key={index} sx={{ border: "1px solid green", mb: 2, p:1,minWidth: "200px", maxWidth:"auto", borderRadius: 2 }}>
             <Checkbox
               color="success"
               id={option}
